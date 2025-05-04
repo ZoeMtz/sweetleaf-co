@@ -1,0 +1,57 @@
+
+:root {
+    --deep-green: #12403A;
+    --forest-green: #1F514E;
+    --teal: #386E67;
+    --gray: #B2B1B0;
+    --caramel: #A66A3C;
+    --rich-brown: #733D0B;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--gray);
+    color: var(--deep-green);
+}
+
+.hero {
+    background-color: var(--forest-green);
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.card {
+    border: 1px solid var(--forest-green);
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+}
+
+.card-title {
+    color: var(--rich-brown);
+}
+
+.card-text {
+    color: var(--forest-green);
+}
+
+.btn-success {
+    background-color: var(--caramel);
+    border-color: var(--caramel);
+}
+
+.btn-success:hover {
+    background-color: var(--rich-brown);
+    border-color: var(--rich-brown);
+}
+
+a.btn-link {
+    color: var(--forest-green);
+}
+
+a.btn-link:hover {
+    color: var(--rich-brown);
+}
