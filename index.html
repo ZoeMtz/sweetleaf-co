@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="static/bootstrap.min.css">
     <link rel="stylesheet" href="static/sweetleaf.css">
     <link rel="icon" href="static/assets/favicon.jpg">
+    <link rel="manifest" href="static/manifest.json">
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("static/service-worker.js");
+  }
+</script>
     <style>
         body {
             background-color: #f9f6f2;
