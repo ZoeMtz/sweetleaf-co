@@ -1,19 +1,39 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Cart - Sweetleaf & Co.</title>
-    <link rel="stylesheet" href="static/bootstrap.min.css">
-    <link rel="stylesheet" href="static/sweetleaf.css">
+  <meta charset="UTF-8">
+  <title>Your Cart - Sweetleaf & Co.</title>
+  <link rel="stylesheet" href="static/bootstrap.min.css">
+  <link rel="stylesheet" href="static/sweetleaf.css">
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">Your Cart</h1>
-        <p class="text-center">Your cart is currently empty. Browse our teas and add something special!</p>
-        <div class="text-center">
-            <a href="index.html" class="btn btn-success">Back to Shop</a>
-        </div>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Your Cart</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mint Meadow</td>
+          <td>1</td>
+          <td>$5.99</td>
+          <td>$5.99</td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-end fw-bold">Total:</td>
+          <td class="fw-bold">$5.99</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-end">
+      <a href="checkout2.html" class="btn btn-success">Proceed to Checkout</a>
     </div>
+  </div>
 </body>
 </html>
