@@ -2,52 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Login - Sweetleaf & Co.</title>
+  <title>Admin Login - Sweetleaf & Co.</title>
   <link rel="stylesheet" href="static/bootstrap.min.css" />
   <link rel="stylesheet" href="static/sweetleaf.css" />
 </head>
 <body>
   <div class="container mt-5" style="max-width: 500px;">
-    <h1 class="text-center">Login</h1>
-    <form class="mt-4" onsubmit="return loginRedirect()">
+    <h2 class="text-center mb-4">Admin Login</h2>
+    <form onsubmit="return adminLogin()">
       <div class="mb-3">
-        <label class="form-label">Username or Email</label>
-        <input type="text" class="form-control" id="user" required />
+        <label class="form-label">Admin Username</label>
+        <input type="text" class="form-control" id="adminUser" required />
       </div>
       <div class="mb-3">
         <label class="form-label">Password</label>
-        <input type="password" class="form-control" id="pass" required />
+        <input type="password" class="form-control" id="adminPass" required />
       </div>
-      <div class="mb-3">
-        <label class="form-label">Login As:</label>
-        <select class="form-select" id="role" required>
-          <option value="">Choose one</option>
-          <option value="admin">Admin</option>
-          <option value="customer">Customer</option>
-        </select>
-      </div>
-      <button class="btn btn-success w-100">Login</button>
+      <button type="submit" class="btn btn-success w-100">Login</button>
     </form>
   </div>
 
   <script>
-    function loginRedirect() {
-      const role = document.getElementById("role").value;
-      const user = document.getElementById("user").value;
-      const pass = document.getElementById("pass").value;
+    function adminLogin() {
+      const user = document.getElementById("adminUser").value;
+      const pass = document.getElementById("adminPass").value;
 
-      if (role === "admin" && user === "admin" && pass === "admin123") {
+      if (user === "admin" && pass === "admin123") {
         alert("Admin login successful!");
         window.location.href = "admin_index.html";
-      } else if (role === "customer" && user && pass) {
-        alert("Customer login successful!");
-        window.location.href = "index.html";
+        return false;
       } else {
-        alert("Invalid credentials or role.");
+        alert("Invalid admin credentials.");
+        return false;
       }
-      return false;
     }
   </script>
 </body>
 </html>
-
