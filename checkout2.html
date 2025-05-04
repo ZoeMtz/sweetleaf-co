@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout - Sweetleaf & Co.</title>
+  <link rel="stylesheet" href="static/bootstrap.min.css">
+  <link rel="stylesheet" href="static/sweetleaf.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Checkout</h1>
+    <form action="order_confirmed.html" method="get">
+      <div class="mb-3">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Shipping Address</label>
+        <textarea class="form-control" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Payment Method</label>
+        <select class="form-select" required>
+          <option value="">Select</option>
+          <option>Credit Card</option>
+          <option>PayPal</option>
+          <option>Gift Card</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-success">Place Order</button>
+    </form>
+  </div>
+</body>
+</html>
