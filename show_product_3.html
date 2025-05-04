@@ -16,16 +16,17 @@
       <div class="card-body text-center">
         <h2 class="card-title">Sir Earl Grey</h2>
         <p class="card-text">A classic black tea infused with bergamot citrus, perfect for an afternoon pause.</p>
-        <button onclick="addToCart('Sir Earl Grey')" class="btn btn-success">Add to Cart</button>
+        <p class="fw-bold">Price: $6.49</p>
+        <button onclick="addToCart('Sir Earl Grey', '$6.49')" class="btn btn-success">Add to Cart</button>
       </div>
     </div>
   </div>
   <script>
-    function addToCart(itemName) {
+    function addToCart(name, price) {
       let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      cart.push(itemName);
+      cart.push({ name, price });
       localStorage.setItem('cart', JSON.stringify(cart));
-      alert(itemName + " added to cart!");
+      alert(name + " added to cart!");
     }
   </script>
 </body>
