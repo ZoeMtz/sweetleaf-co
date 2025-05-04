@@ -1,27 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Admin Login</title>
-  <link rel="stylesheet" href="static/bootstrap.min.css">
+  <meta charset="UTF-8" />
+  <title>Login - Sweetleaf & Co.</title>
+  <link rel="stylesheet" href="static/bootstrap.min.css" />
+  <link rel="stylesheet" href="static/sweetleaf.css" />
 </head>
-<body class="container mt-5">
-  <h2>Admin Login</h2>
-  <form onsubmit="return loginAdmin()">
-    <input type="text" id="adminUser" placeholder="Username" class="form-control mb-2" required />
-    <input type="password" id="adminPass" placeholder="Password" class="form-control mb-2" required />
-    <button class="btn btn-success">Login</button>
-  </form>
+<body>
+  <div class="container mt-5" style="max-width: 500px;">
+    <h1 class="text-center">Login</h1>
+    <form class="mt-4" onsubmit="return loginRedirect()">
+      <div class="mb-3">
+        <label class="form-label">Username or Email</label>
+        <input type="text" class="form-control" id="user" required />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" id="pass" required />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Login As:</label>
+        <select class="form-select" id="role" required>
+          <option value="">Choose one</option>
+          <option value="admin">Admin</option>
+          <option value="customer">Customer</option>
+        </select>
+      </div>
+      <button class="btn btn-success w-100">Login</button>
+    </form>
+  </div>
+
   <script>
-    function loginAdmin() {
-      if (document.getElementById('adminUser').value === 'admin' &&
-          document.getElementById('adminPass').value === '123') {
-        alert('Admin login successful!');
-        return true;
+    function loginRedirect() {
+      const role = document.getElementById("role").value;
+      const user = document.getElementById("user").value;
+      const pass = document.getElementById("pass").value;
+
+      if (role === "admin" && user === "admin" && pass === "admin123") {
+        alert("Admin login successful!");
+        window.location.href = "admin_index.html";
+      } else if (role === "customer" && user && pass) {
+        alert("Customer login successful!");
+        window.location.href = "index.html";
       } else {
-        alert('Invalid credentials');
-        return false;
+        alert("Invalid credentials or role.");
       }
+      return false;
     }
   </script>
 </body>
 </html>
+
