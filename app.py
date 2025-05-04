@@ -36,14 +36,25 @@ def get_products():
 @app.route("/api/orders", methods=["POST"])
 def place_order():
     data = request.get_json()
-    new_order = Order(
-        items=str(data.get("items")),
-        total=data.get("total"),
-        email=data.get("email")
-    )
+    items = data.get("items")
+    total = data.get("total")
+
+    # Save to database
+    new_order = Order(items=str(items), total=total)
     db.session.add(new_order)
     db.session.commit()
-    print("Simulated email sent to:", data.get("email"))
-    return jsonify({"message": "Order received"}), 201
+
+    # Simulated email receipt
+    print("\n--- Simulated Email Receipt ---")
+    print("To: customer@example.com")
+    print("Subject: Your Sweetleaf & Co. Order Receipt")
+    print("Items Ordered:")
+    for item in items:
+        print(f" - {item['name']} - ${item['price']:.2f}")
+    print(f"Total: ${total:.2f}")
+    print("-------------------------------\n")
+
+    return jsonify({"message": "Order received and receipt simulated."}), 201
+
 
 application = app
