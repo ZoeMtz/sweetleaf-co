@@ -4,10 +4,11 @@ from flask_mail import Mail, Message
 
 app = Flask(__name__)
 
-# ======= Configurations =======
+# ======= Configuration =======
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sweetleaf.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+# Email config (commented out if not sending from free-tier)
 app.config['MAIL_SERVER'] = 'smtp-relay.brevo.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
@@ -32,8 +33,7 @@ class Order(db.Model):
     customer_email = db.Column(db.String(100))
     total = db.Column(db.Float)
 
-# ======= Routes =======
-
+# ======= Pages =======
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -57,13 +57,13 @@ def submit_order():
     db.session.add(order)
     db.session.commit()
 
-    # Skip email due to PythonAnywhere free-tier restrictions
+    # Uncomment if using email
     # msg = Message(
     #     "Sweetleaf Order Confirmation",
     #     sender=app.config['MAIL_USERNAME'],
     #     recipients=[email]
     # )
-    # msg.body = f"Hi {name},\\n\\nThank you for your order of ${total} from Sweetleaf & Co!"
+    # msg.body = f"Hi {name},\n\nThank you for your order of ${total} from Sweetleaf & Co!"
     # mail.send(msg)
 
     return redirect(url_for("order_confirmed"))
@@ -85,7 +85,6 @@ def customer_login():
     return render_template("customer_login.html")
 
 # ======= Product Pages =======
-
 @app.route("/product_chamomile")
 def product_chamomile():
     return render_template("show_product_2.html")
@@ -102,8 +101,7 @@ def product_earl_grey():
 def product_hibiscus():
     return render_template("show_product_4.html")
 
-# ======= Admin =======
-
+# ======= Admin Pages =======
 @app.route("/admin_index")
 def admin_index():
     return render_template("admin_index.html")
@@ -117,16 +115,48 @@ def admin_orders():
 def admin_product():
     return render_template("admin_product.html")
 
-# ======= API =======
-
+# ======= APIs =======
 @app.route("/api/items")
 def get_items():
     items = Product.query.all()
     return jsonify([item.to_dict() for item in items])
 
-# ======= Run =======
+@app.route("/api/products")
+def get_products():
+    products = Product.query.all()
+    return jsonify([product.to_dict() for product in products])
+
+# ======= Sample Data Loaders =======
+def add_sample_products():
+    if Product.query.count() == 0:
+        sample_products = [
+            Product(name="Mint Meador", price=3.99),
+            Product(name="Calm Chamomile", price=4.49),
+            Product(name="Sir Earl Grey", price=4.25),
+            Product(name="Radiant Hibiscus", price=4.75)
+        ]
+        db.session.add_all(sample_products)
+        db.session.commit()
+        print("Sample products added.")
+    else:
+        print("Products already exist.")
+
+def add_sample_orders():
+    if Order.query.count() == 0:
+        sample_orders = [
+            Order(customer_name="Alice", customer_email="alice@example.com", total=9.98),
+            Order(customer_name="Bob", customer_email="bob@example.com", total=14.23),
+            Order(customer_name="Clara", customer_email="clara@example.com", total=7.50)
+        ]
+        db.session.add_all(sample_orders)
+        db.session.commit()
+        print("Sample orders added.")
+    else:
+        print("Orders already exist.")
 
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
+        add_sample_products()
+        add_sample_orders()
     app.run(debug=True)
