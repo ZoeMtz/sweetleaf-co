@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sir Earl Grey - Sweetleaf & Co.</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='sweetleaf.css') }}" />
+</head>
+<body>
+  <div class="container mt-5">
+    <a href="{{ url_for('home') }}" class="btn btn-link mb-4">← Back to Home</a>
+    <div class="card mx-auto shadow" style="max-width: 500px; border-radius: 15px;">
+      <img src="{{ url_for('static', filename='assets/earlgrey.jpg') }}" class="card-img-top" alt="Sir Earl Grey" style="height: 300px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+      <div class="card-body text-center">
+        <h2 class="card-title">Sir Earl Grey</h2>
+        <p class="card-text">A bold, classic black tea with citrusy notes and timeless flavor.</p>
+        <p class="fw-bold">Price: $6.49</p>
+        <button onclick="addToCart('Sir Earl Grey', '$6.49')" class="btn btn-primary">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      cart.push({ name, price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(name + " added to cart!");
+    }
+  </script>
+</body>
+</html>

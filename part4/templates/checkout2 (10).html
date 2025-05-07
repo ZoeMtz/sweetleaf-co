@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout - Sweetleaf & Co.</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='sweetleaf.css') }}">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Checkout</h1>
+    <form action="{{ url_for('submit_order') }}" method="post">
+      <div class="mb-3">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-control" name="name" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" name="email" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Shipping Address</label>
+        <textarea class="form-control" name="address" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Payment Method</label>
+        <select class="form-select" name="payment_method" required>
+          <option value="">Select</option>
+          <option>Credit Card</option>
+          <option>PayPal</option>
+          <option>Gift Card</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Total</label>
+        <input type="text" class="form-control" name="total" value="{{ total }}" readonly>
+      </div>
+      <button type="submit" class="btn btn-success">Place Order</button>
+    </form>
+  </div>
+</body>
+</html>
+

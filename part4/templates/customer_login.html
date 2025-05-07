@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customer Login</title>
+  <link rel="stylesheet" href="static/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+  <h2>Customer Login</h2>
+  <form onsubmit="return loginCustomer()">
+    <input type="email" id="custEmail" placeholder="Email" class="form-control mb-2" required />
+    <input type="password" id="custPass" placeholder="Password" class="form-control mb-2" required />
+    <button class="btn btn-success">Login</button>
+  </form>
+  <script>
+    function loginCustomer() {
+      if (document.getElementById('custEmail').value &&
+          document.getElementById('custPass').value.length >= 3) {
+        alert('Customer login successful!');
+        return true;
+      } else {
+        alert('Invalid login');
+        return false;
+      }
+    }
+  </script>
+</body>
+</html>

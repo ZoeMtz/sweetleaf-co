@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mint Meadow - Sweetleaf & Co.</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='sweetleaf.css') }}" />
+</head>
+<body>
+  <div class="container mt-5">
+    <a href="{{ url_for('home') }}" class="btn btn-link mb-4">← Back to Home</a>
+    <div class="card mx-auto shadow" style="max-width: 500px; border-radius: 15px;">
+      <img src="{{ url_for('static', filename='assets/mint.jpg') }}" class="card-img-top" alt="Mint Meadow" style="height: 300px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+      <div class="card-body text-center">
+        <h2 class="card-title">Mint Meadow</h2>
+        <p class="card-text">A refreshing mint blend that cools and calms with every sip.</p>
+        <p class="fw-bold">Price: $5.99</p>
+        <button onclick="addToCart('Mint Meadow', '$5.99')" class="btn btn-primary">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      cart.push({ name, price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(name + " added to cart!");
+    }
+  </script>
+</body>
+</html>
+

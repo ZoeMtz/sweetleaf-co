@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Orders</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='sweetleaf.css') }}" />
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center">Customer Orders</h1>
+    <p class="text-center">View recent orders placed by customers.</p>
+    <table class="table table-striped mt-4">
+      <thead>
+        <tr>
+          <th>Order #</th>
+          <th>Name</th>
+          <th>Total</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+        <tr>
+          <td>#{{ order.id }}</td>
+          <td>{{ order.customer_name }}</td>
+          <td>${{ order.total }}</td>
+          <td>Pending</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
+
