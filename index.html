@@ -3,22 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Sweetleaf & Co. - Southwest Teas</title>
-    <link rel="stylesheet" href="static/bootstrap.min.css">
-    <link rel="stylesheet" href="static/sweetleaf.css">
-    <link rel="icon" href="static/assets/favicon.jpg">
-    <link rel="manifest" href="manifest.json"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='sweetleaf.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='assets/favicon.jpg') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#838e3c">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='assets/favicon.jpg') }}">
+
     <script>
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("service-worker.js"); 
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("{{ url_for('static', filename='service-worker.js') }}")
+            .then(function (registration) {
+              console.log("ServiceWorker registered:", registration);
+            })
+            .catch(function (error) {
+              console.log("ServiceWorker registration failed:", error);
+            });
+        });
       }
     </script>
+
     <style>
         body {
             background-color: #f9f6f2;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: "Segoe UI", sans-serif;
         }
         .hero {
-            background-image: url('static/assets/hero.jpg');
+            background-image: url('{{ url_for('static', filename='assets/hero.jpg') }}');
             background-size: cover;
             background-position: center;
             height: 300px;
@@ -40,54 +52,56 @@
 
 <nav class="navbar navbar-light bg-light px-3">
   <div class="container-fluid d-flex justify-content-end">
-    <a class="btn btn-outline-success me-2" href="index.html">Home</a>
-    <a class="btn btn-outline-success me-2" href="cart.html">Cart</a>
-    <a class="btn btn-outline-success me-2" href="contact.html">Contact Us</a>
-    <a class="btn btn-outline-success" href="login.html">Login</a>
+    <a class="btn btn-outline-success me-2" href="{{ url_for('home') }}">Home</a>
+    <a class="btn btn-outline-success me-2" href="{{ url_for('cart') }}">Cart</a>
+    <a class="btn btn-outline-success me-2" href="{{ url_for('contact') }}">Contact Us</a>
+    <a class="btn btn-outline-success" href="{{ url_for('login') }}">Login</a>
   </div>
 </nav>
 
 <div class="hero">Sweetleaf & Co.</div>
+
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Explore Our Flavors</h2>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card product-card">
-                <img src="static/assets/mint.jpg" class="card-img-top" alt="Mint Meadow">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Mint Meadow</h5>
-                    <a href="show_product_1.html" class="btn btn-success">View</a>
-                </div>
-            </div>
+  <h2 class="text-center mb-4">Explore Our Flavors</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <div class="card product-card mb-4">
+        <img src="{{ url_for('static', filename='assets/mint.jpg') }}" class="card-img-top" alt="Mint Mojave">
+        <div class="card-body text-center">
+          <h5 class="card-title">Mint Meadow</h5>
+          <a href="{{ url_for('product_mint') }}" class="btn btn-success">View</a>
         </div>
-        <div class="col-md-3">
-            <div class="card product-card">
-                <img src="static/assets/chamomile.jpg" class="card-img-top" alt="Calm Chamomile">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Calm Chamomile</h5>
-                    <a href="show_product_2.html" class="btn btn-success">View</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card product-card">
-                <img src="static/assets/earlgrey.jpg" class="card-img-top" alt="Sir Earl Grey">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Sir Earl Grey</h5>
-                    <a href="show_product_3.html" class="btn btn-success">View</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card product-card">
-                <img src="static/assets/hibiscous.jpg" class="card-img-top" alt="Radiant Hibiscus">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Radiant Hibiscus</h5>
-                    <a href="show_product_4.html" class="btn btn-success">View</a>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="col-md-3">
+      <div class="card product-card mb-4">
+        <img src="{{ url_for('static', filename='assets/chamomile.jpg') }}" class="card-img-top" alt="Chamomile Bliss">
+        <div class="card-body text-center">
+          <h5 class="card-title">Calm Chamomile</h5>
+          <a href="{{ url_for('product_chamomile') }}" class="btn btn-success">View</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card product-card mb-4">
+        <img src="{{ url_for('static', filename='assets/earl_grey.jpg') }}" class="card-img-top" alt="Earl Grey Cactus">
+        <div class="card-body text-center">
+          <h5 class="card-title">Sir Earl Grey</h5>
+          <a href="{{ url_for('product_earl_grey') }}" class="btn btn-success">View</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card product-card mb-4">
+        <img src="{{ url_for('static', filename='assets/hibiscus.jpg') }}" class="card-img-top" alt="Hibiscus Heat">
+        <div class="card-body text-center">
+          <h5 class="card-title">Radiant Hibiscus</h5>
+          <a href="{{ url_for('product_hibiscus') }}" class="btn btn-success">View</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
 </body>
 </html>
